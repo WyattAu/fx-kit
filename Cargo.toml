@@ -1,0 +1,22 @@
+[package]
+name = "fx-kit"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Currency revaluation per IAS 21 — exact rational rates, closing-rate restatement of monetary items, unrealized gain/loss with the posting split"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/WyattAu/fx-kit"
+keywords = ["accounting", "currency", "fx", "ias21", "finance"]
+categories = ["finance"]
+
+[dependencies]
+vat-rules = "=0.1.0"
+
+[dev-dependencies]
+double-entry = "=0.1.0"
+
+[lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+indexing_slicing = "deny"
+panic = "deny"
