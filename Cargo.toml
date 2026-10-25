@@ -1,9 +1,9 @@
 [package]
 name = "fx-kit"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.85"
-description = "Currency revaluation per IAS 21 — exact rational rates, closing-rate restatement of monetary items, unrealized gain/loss with the posting split"
+description = "Currency revaluation per IAS 21: exact rational rates, closing-rate restatement, unrealized gain/loss"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/WyattAu/fx-kit"
 keywords = ["accounting", "currency", "fx", "ias21", "finance"]
