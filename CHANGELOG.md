@@ -5,6 +5,13 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-10-27
+
+### Changed
+
+- Tracks `vat-rules 0.1.1` — the graph's convergence pin. No behavioural change.
+
+
 ## [0.1.0] - 2026-10-24
 
 Initial release.
