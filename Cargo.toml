@@ -1,6 +1,6 @@
 [package]
 name = "fx-kit"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2024"
 rust-version = "1.85"
 description = "Currency revaluation per IAS 21: exact rational rates, closing-rate restatement, unrealized gain/loss"

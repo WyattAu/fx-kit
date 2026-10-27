@@ -115,6 +115,36 @@ impl Rate {
         (self.numerator, self.denominator)
     }
 
+    /// Parse a quoted **percentage** — `"6.25"` meaning a multiplier of
+    /// 0.0625, `"0.5"` meaning 0.005.
+    ///
+    /// US rate data is quoted as percents by universal convention; parsing
+    /// `"6.25"` as a multiplier would make every rate a hundred times too
+    /// large, which is the first bug a percent-vs-multiplier confusion
+    /// produces. The result is reduced, like every other `Rate`.
+    pub fn parse_percent(quoted: &str) -> Result<Self, FxError> {
+        let r = Self::parse(quoted)?;
+        let mut numerator = r.numerator;
+        let mut denominator = r.denominator * 100;
+        // Reduce by gcd: 625/10000 is 1/16, and smaller numbers stay
+        // i64-safe longer.
+        let mut a = numerator;
+        let mut b = denominator;
+        while b != 0 {
+            let rem = a % b;
+            a = b;
+            b = rem;
+        }
+        if a > 1 {
+            numerator /= a;
+            denominator /= a;
+        }
+        Ok(Self {
+            numerator,
+            denominator,
+        })
+    }
+
     /// Restate `foreign_minor` at this rate, rounded once by `mode`.
     ///
     /// The multiplication happens in i128 — minor units times a rate with four
@@ -351,6 +381,26 @@ mod tests {
             report.per_currency(),
             vec![("JPY".to_string(), -1_475), ("USD".to_string(), -580)]
         );
+    }
+
+    #[test]
+    fn quoted_percentages_parse_as_percentages_not_multipliers() {
+        // "6.25" is 6.25% = 0.0625 = 1/16. Parsing it as a multiplier would
+        // make every US rate a hundred times too large — the first bug a
+        // percent-vs-multiplier confusion produces.
+        let pct = Rate::parse_percent("6.25").expect("parses");
+        assert_eq!(pct.as_rational(), (1, 16));
+        assert_eq!(pct.restate(1_600_000, crate::TieMode::HalfUp), 100_000);
+
+        let half = Rate::parse_percent("0.5").expect("parses");
+        assert_eq!(half.as_rational(), (1, 200));
+        assert_eq!(half.restate(400, crate::TieMode::HalfUp), 2);
+
+        // Zero is a legitimate quoted rate (a state with no rate); negative
+        // and malformed are not.
+        assert!(Rate::parse_percent("0").is_err());
+        assert!(Rate::parse_percent("-1").is_err());
+        assert!(Rate::parse_percent("abc").is_err());
     }
 
     #[test]

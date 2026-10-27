@@ -5,6 +5,13 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-10-27
+
+### Added
+
+- `Rate::parse_percent` - quoted percentages to exact reduced rationals ("6.25" as 6.25%, i.e. a multiplier of 1/16). US rate data is quoted as percents by convention; parsing it as a multiplier makes every rate a hundred times too large.
+
+
 ## [0.1.3] - 2026-10-27
 
 ### Changed
