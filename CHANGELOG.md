@@ -5,6 +5,14 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ## [Unreleased]
 
+## [0.1.5] - 2026-10-27
+
+### Added
+
+- `Rate::numerator` / `Rate::denominator` — the reduced rational parts, exposed for property-test cross-validation.
+- Property tests: identity rate restates exactly, restatement is sign-symmetric and monotone, `parse_percent` is `parse` over exactly 100, and the parser boundary never panics on arbitrary strings.
+
+
 ## [0.1.4] - 2026-10-27
 
 ### Added

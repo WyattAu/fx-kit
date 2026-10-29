@@ -115,6 +115,18 @@ impl Rate {
         (self.numerator, self.denominator)
     }
 
+    /// The reduced numerator.
+    #[must_use]
+    pub fn numerator(&self) -> i64 {
+        self.numerator
+    }
+
+    /// The reduced denominator.
+    #[must_use]
+    pub fn denominator(&self) -> i64 {
+        self.denominator
+    }
+
     /// Parse a quoted **percentage** — `"6.25"` meaning a multiplier of
     /// 0.0625, `"0.5"` meaning 0.005.
     ///
