@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to this project are documented here. Format: [Keep a
-Changelog](https://keepachangelog.com/) — versions follow [semver](https://semver.org).
+Changelog](https://keepachangelog.com/); versions follow [semver](https://semver.org).
 
 ## [Unreleased]
 
@@ -9,7 +9,7 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ### Added
 
-- `Rate::numerator` / `Rate::denominator` — the reduced rational parts, exposed for property-test cross-validation.
+- `Rate::numerator` / `Rate::denominator`; the reduced rational parts, exposed for property-test cross-validation.
 - Property tests: identity rate restates exactly, restatement is sign-symmetric and monotone, `parse_percent` is `parse` over exactly 100, and the parser boundary never panics on arbitrary strings.
 
 
@@ -24,7 +24,7 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ### Changed
 
-- Tracks `vat-rules 0.1.1` — the graph's convergence pin. No behavioural change.
+- Tracks `vat-rules 0.1.1`; the graph's convergence pin. No behavioural change.
 
 
 ## [0.1.0] - 2026-10-24
@@ -33,11 +33,11 @@ Initial release.
 
 ### Added
 
-- `Rate::parse` — decimal rate strings to exact reduced rationals; floats
+- `Rate::parse`; decimal rate strings to exact reduced rationals; floats
   never enter the path from quote to posted difference.
-- `Rate::restate` — `foreign_minor × num / den` in i128, one rounding at the
+- `Rate::restate`; `foreign_minor × num / den` in i128, one rounding at the
   final division, tie mode a parameter.
-- `revalue` — closing-rate restatement of monetary items with the exchange
+- `revalue`; closing-rate restatement of monetary items with the exchange
   difference per item, net and per-currency totals. Base-currency items and
   missing rates are errors, not silent no-ops.
 - A `double-entry` integration test posting the month-end revaluation and
